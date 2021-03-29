@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+
 import './App.css';
 
+import ClippedDrawer from './components/ClippedDrawer/ClippedDrawer';
+import MenuAppBar from './components/MenuAppBar/MenuAppBar';
+import Button from './components/Button/Button';
+import Main from './containers/Main/Main';
+
 function App() {
+  const [open, setOpen] = React.useState(true);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <MenuAppBar isOpen={ () => setOpen(!open)}/>  
+       <ClippedDrawer open={open}/>
+       <Main open={open}/>
     </div>
   );
 }
