@@ -1,10 +1,12 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
-import Table from '../../components/Table/Table';
-import Box from '@material-ui/core/Box';
 
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+import { makeStyles } from '@material-ui/core/styles';
+
+import Button from '../../components/Button/Button';
+import Table from '../../components/Table/Table';
+
 
 const drawerWidth = 240;
 
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    paddingTop:0,
+    paddingTop: 0,
     marginTop: 64,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -72,16 +74,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main(props) {
-    const classes = useStyles();
-    return (
-             <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: props.open,
-        })}
-      >
-          <Button/>
-          <Table/>      
-      </main>
-
-    )
+  const classes = useStyles();
+  return (
+    <main
+      className={clsx(classes.content, {
+        [classes.contentShift]: props.open,
+      })}
+    >
+      <Button />
+      <Table />
+    </main>
+  )
 }
