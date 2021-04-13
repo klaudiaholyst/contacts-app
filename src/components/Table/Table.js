@@ -9,53 +9,56 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { ContactContext } from '../../contexts/ContactContext';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
-  "& td, th": {
-    borderLeft: 'solid 1px rgb(224, 224, 224)'
+    "& td, th": {
+      borderLeft: 'solid 1px rgb(224, 224, 224)'
+    },
+    "& th": {
+      fontWeight: 'bold'
+    }
   },
-  "& th": {
-    fontWeight: 'bold'
-  }},
 });
 
-function createData(name, email, phoneNumber, tags) {
-  return { name, email, phoneNumber, tags };
-}
-
-const rows = [
-  createData('John Snow', 'johnyys@test.com', '+43 687 125 458', 'clients'),
-  createData('Mary Winter', 'mary@test.com', '+43 654 213 215', 'friends')
-];
 
 export default function BasicTable() {
   const classes = useStyles();
-
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table" variant="body">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="left">E-mail</TableCell>
-            <TableCell align="left">Phone number</TableCell>
-            <TableCell align="left">Tags</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.email}</TableCell>
-              <TableCell align="left">{row.phoneNumber}</TableCell>
-              <TableCell align="left">{row.tags}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <ContactContext.Consumer>
+      {({ contacts }) => (
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table" variant="body">
+            <TableHead>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell align="left">E-mail</TableCell>
+                <TableCell align="left">Phone number</TableCell>
+                <TableCell align="left">Tags</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+
+              {contacts.map((contact) => (
+                <TableRow key={contact.id}>
+                  <TableCell scope="row">
+                    {contact.name} {contact.surname}
+                  </TableCell>
+                  <TableCell align="left">{contact.email}</TableCell>
+                  <TableCell align="left">{contact.number}</TableCell>
+                  <TableCell align="left">{contact.tags}</TableCell>
+                </TableRow>
+              ))}
+
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+
+    </ContactContext.Consumer>
+
+
   );
 }
