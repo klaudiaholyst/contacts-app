@@ -16,19 +16,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ContainedButton() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
   return (
     <div className={classes.root}>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button variant="contained" color="primary" onClick={handleOpenModal}>
         Add new
       </Button>
-      <Modal open={open} handleClose={handleClose} />
+      <Modal openModal={openModal} handleCloseModal={handleCloseModal} />
     </div>
   );
 }

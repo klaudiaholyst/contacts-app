@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import ClippedDrawer from './components/ClippedDrawer/ClippedDrawer';
+import DrawerLeft from './components/DrawerLeft/DrawerLeft';
 import MenuAppBar from './components/MenuAppBar/MenuAppBar';
 import Main from './containers/Main/Main';
 import ContactContext from './contexts/ContactContext';
@@ -9,14 +9,14 @@ import './App.css';
 
 
 function App() {
-  const [open, setOpen] = useState(true);
+  const [openDrawer, setOpenDrawer] = useState(true);
   
   return (
     <div className="App">
-      <MenuAppBar isOpen={() => setOpen(!open)} />
+      <MenuAppBar isDrawerOpen={() => setOpenDrawer(!openDrawer)} />
       <ContactContext>
-        <ClippedDrawer open={open} />
-        <Main open={open} />
+        <DrawerLeft openDrawer={openDrawer} />
+        <Main openDrawer={openDrawer} />
       </ContactContext>
     </div>
   );

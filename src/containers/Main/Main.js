@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Button from '../../components/Button/Button';
+import ButtonOpeningModal from '../../components/ButtonOpeningModal/ButtonOpeningModal';
 import Table from '../../components/Table/Table';
 
 
@@ -78,10 +78,10 @@ export default function Main(props) {
   return (
     <main
       className={clsx(classes.content, {
-        [classes.contentShift]: props.open,
+        [classes.contentShift]: props.openDrawer,
       })}
     >
-      <Button />
+      <ButtonOpeningModal />
       <Table />
     </main>
   )

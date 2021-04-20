@@ -24,13 +24,12 @@ const useStyles = makeStyles({
 });
 
 
-export default function BasicTable() {
+export default function ContactsTable() {
   const classes = useStyles();
   return (
     <ContactContext.Consumer>
       {({contacts})=> (
         <TableContainer component={Paper}>
-          {console.log(contacts)}
           <Table className={classes.table} aria-label="simple table" variant="body">
             <TableHead>
               <TableRow>

@@ -81,12 +81,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft(props) {
+export default function DrawerLeft(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = React.useState(true);
 
   const handleClick = () => {
-    setOpen(!open);
+    setOpenDrawer(!openDrawer);
   };
   return (
     <div className={classes.root}>
@@ -95,7 +95,7 @@ export default function PersistentDrawerLeft(props) {
         className={classes.drawer}
         variant="persistent"
         anchor="left"
-        open={props.open}
+        open={props.openDrawer}
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -109,10 +109,10 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           <ListItem button onClick={handleClick}>
-            <ListItemIcon>{open ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
+            <ListItemIcon>{openDrawer ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
             <ListItemText primary="Tags" />
           </ListItem>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={openDrawer} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem button >
                 <ListItemIcon>

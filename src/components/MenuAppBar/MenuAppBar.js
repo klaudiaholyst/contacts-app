@@ -47,7 +47,7 @@ export default function MenuAppBar(props) {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton onClick={() => props.isOpen()} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton onClick={() => props.isDrawerOpen()} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>

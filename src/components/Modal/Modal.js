@@ -106,7 +106,7 @@ export default function SimpleModal(props) {
     e.preventDefault();
     dispatch({ type: 'ADD_CONTACT', contact: { name, surname, email, number, tag } });
     handleEmptyForm();
-    props.handleClose();
+    props.handleCloseModal();
   }
 
   const body = (
@@ -158,7 +158,7 @@ export default function SimpleModal(props) {
 
           <Grid item container xs={4} direction="row" alignItems="flex-end" justify="flex-end" spacing={2}>
             <Grid item>
-              <Button onClick={props.handleClose} variant="outlined" color="primary">Cancel</Button>
+              <Button onClick={props.handleCloseModal} variant="outlined" color="primary">Cancel</Button>
             </Grid>
             <Grid item>
               <Button onClick={handleClick} variant="contained" color="primary">Save</Button>
@@ -171,8 +171,8 @@ export default function SimpleModal(props) {
   return (
     <div>
       <Modal
-        open={props.open}
-        onClose={props.handleClose}
+        open={props.openModal}
+        onClose={props.handleCloseModal}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
