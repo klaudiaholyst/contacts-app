@@ -28,8 +28,9 @@ export default function BasicTable() {
   const classes = useStyles();
   return (
     <ContactContext.Consumer>
-      {({ contacts }) => (
+      {({contacts})=> (
         <TableContainer component={Paper}>
+          {console.log(contacts)}
           <Table className={classes.table} aria-label="simple table" variant="body">
             <TableHead>
               <TableRow>
@@ -39,9 +40,8 @@ export default function BasicTable() {
                 <TableCell align="left">Tags</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-
-              {contacts.map((contact) => (
+            <TableBody>  
+              {contacts && contacts.map((contact) => (
                 <TableRow key={contact.id}>
                   <TableCell scope="row">
                     {contact.name} {contact.surname}
@@ -51,13 +51,11 @@ export default function BasicTable() {
                   <TableCell align="left">{contact.tags}</TableCell>
                 </TableRow>
               ))}
-
             </TableBody>
           </Table>
         </TableContainer>
-      )}
-
-    </ContactContext.Consumer>
+)}
+</ContactContext.Consumer>
 
 
   );

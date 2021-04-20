@@ -92,11 +92,20 @@ export default function SimpleModal(props) {
     setTag(event.target.value);
   };
 
+  const handleEmptyForm = ()=>{
+    setName('');
+    setSurname('');
+    setEmail('');
+    setNumber('');
+    setTag([]);
+  }
+
   const { dispatch, tagsList } = useContext(ContactContext);
 
   const handleClick = (e) => {
     e.preventDefault();
     dispatch({ type: 'ADD_CONTACT', contact: { name, surname, email, number, tag } });
+    handleEmptyForm();
     props.handleClose();
   }
 
