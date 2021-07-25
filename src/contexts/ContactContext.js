@@ -9,16 +9,16 @@ export const ContactContext = createContext();
 
 const ContactContextProvider = (props) => {
     const [tagsList, setTagsList] = useState(['clients', 'family', 'friends', 'relatives']);
-    const localData = localStorage.getItem('contacts') ? JSON.parse(localStorage.getItem('contacts')) : null;
-
+    
     const [contacts, dispatch] = useReducer(contactReducer, []);
 
     useEffect(() => {
-            if (localData) {
-                dispatch({ type: 'IMPORT_CONTACTS', payload: localData });
-            } else {
-                dispatch({ type: 'IMPORT_CONTACTS', payload: data })
-            }
+        const localData = localStorage.getItem('contacts') ? JSON.parse(localStorage.getItem('contacts')) : null;
+        if (localData) {
+            dispatch({ type: 'IMPORT_CONTACTS', payload: localData });
+        } else {
+            dispatch({ type: 'IMPORT_CONTACTS', payload: data })
+        }
     }, []);
 
     useEffect(() => {

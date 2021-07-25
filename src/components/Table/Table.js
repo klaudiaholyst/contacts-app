@@ -28,7 +28,7 @@ export default function ContactsTable() {
   const classes = useStyles();
   return (
     <ContactContext.Consumer>
-      {({contacts})=> (
+      {({ contacts }) => (
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table" variant="body">
             <TableHead>
@@ -39,7 +39,7 @@ export default function ContactsTable() {
                 <TableCell align="left">Tags</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>  
+            <TableBody>
               {contacts && contacts.map((contact) => (
                 <TableRow key={contact.id}>
                   <TableCell scope="row">
@@ -53,9 +53,7 @@ export default function ContactsTable() {
             </TableBody>
           </Table>
         </TableContainer>
-)}
-</ContactContext.Consumer>
-
-
+      )}
+    </ContactContext.Consumer>
   );
 }

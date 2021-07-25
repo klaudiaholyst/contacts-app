@@ -92,7 +92,7 @@ export default function SimpleModal(props) {
     setTag(event.target.value);
   };
 
-  const handleEmptyForm = ()=>{
+  const handleEmptyForm = () => {
     setName('');
     setSurname('');
     setEmail('');

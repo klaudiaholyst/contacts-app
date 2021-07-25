@@ -7,10 +7,9 @@ import ContactContext from './contexts/ContactContext';
 
 import './App.css';
 
-
 function App() {
   const [openDrawer, setOpenDrawer] = useState(true);
-  
+
   return (
     <div className="App">
       <MenuAppBar isDrawerOpen={() => setOpenDrawer(!openDrawer)} />
