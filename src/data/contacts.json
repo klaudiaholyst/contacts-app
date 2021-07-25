@@ -1,0 +1,15 @@
+[{
+    "name": "John",
+    "surname":"Snow",
+    "email":"johnyys@test.com", 
+    "number":"+43 687 125 458",
+    "tags": "clients",
+    "id": 1},
+    {
+    "name":"Mary",
+    "surname":"Winter",
+    "email": "mary@test.com",
+    "number": "+43 654 213 215", 
+    "tags": "friends",
+    "id":2}
+]

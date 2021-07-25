@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import DrawerLeft from './components/DrawerLeft/DrawerLeft';
+import MenuAppBar from './components/MenuAppBar/MenuAppBar';
+import Main from './containers/Main/Main';
+import ContactContext from './contexts/ContactContext';
+
 import './App.css';
 
 function App() {
+  const [openDrawer, setOpenDrawer] = useState(true);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MenuAppBar isDrawerOpen={() => setOpenDrawer(!openDrawer)} />
+      <ContactContext>
+        <DrawerLeft openDrawer={openDrawer} />
+        <Main openDrawer={openDrawer} />
+      </ContactContext>
     </div>
   );
 }
