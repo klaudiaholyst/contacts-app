@@ -27,7 +27,7 @@ npm start
 
 ```
 ## Live 📍
-
+https://klaudiaholyst.github.io/contacts-app/
 
 ## License 🔱
 Open source license.
