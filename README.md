@@ -2,7 +2,7 @@
 
 ## Project Overview 🎉
 
-App to collect contacts data. User is able to add new contact (name, surname, phone number and select a tag).
+App to collect contacts data. User is able to add new contact (name, surname, phone number and select a tag), move a contact to trash and back and filter contacts list by tag.
 The initial data is fetched from contacts.json file. Added contacts data is saved on local storage.
 
 ## Technologies 🔧
