@@ -109,10 +109,10 @@ export default function DrawerLeft(props) {
         }}
       >
         <ContactContext.Consumer>
-          {({ tagsList, setActiveTag, activeTag }) => (
+          {({ tagsList, setActiveTag, activeTag, setShowTrash, showTrash }) => (
             <>
               <List disablePadding>
-                <ListItem button key={'Contacts'} selected={activeTag === ''} onClick={() => { setActiveTag('') }} className={classes.listItem}>
+                <ListItem button key={'Contacts'} selected={activeTag === ''&& !showTrash} onClick={() => { setActiveTag(''); setShowTrash(false) }} className={classes.listItem}>
                   <ListItemIcon><PersonIcon /></ListItemIcon>
                   <ListItemText primary={'Show all contacts'} />
                 </ListItem>
@@ -127,7 +127,7 @@ export default function DrawerLeft(props) {
                   <List component="div" disablePadding>
 
                     {tagsList.map(tag => (
-                      <ListItem key={tag} button onClick={() => { setActiveTag(tag) }} selected={activeTag === tag} className={classes.nested}>
+                      <ListItem key={tag} button onClick={() => { setActiveTag(tag); setShowTrash(false); }} selected={activeTag === tag} className={classes.nested}>
                         <ListItemIcon>
                           <LocalOfferIconOutlined fontSize="small"/>
                         </ListItemIcon>
@@ -140,7 +140,11 @@ export default function DrawerLeft(props) {
               </List>
               <Divider />
               <List disablePadding>
-                <ListItem button key={'Trash'}>
+                <ListItem button key={'Trash'} 
+                onClick={() => {
+                  setShowTrash(true);
+                  setActiveTag('')}} 
+                  selected={showTrash}>
                   <ListItemIcon><DeleteIcon /></ListItemIcon>
                   <ListItemText primary={'Trash'} />
                 </ListItem>

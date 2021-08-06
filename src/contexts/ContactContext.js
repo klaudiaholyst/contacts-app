@@ -11,6 +11,8 @@ const ContactContextProvider = (props) => {
     const [tagsList, setTagsList] = useState(['clients', 'family', 'friends', 'relatives']);
     const [activeTag, setActiveTag] = useState('');
 
+    const [showTrash, setShowTrash] = useState(false);
+
     const [contacts, dispatch] = useReducer(contactReducer, []);
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const ContactContextProvider = (props) => {
     }, [contacts]);
 
     return (
-        <ContactContext.Provider value={{ contacts, dispatch, tagsList, activeTag, setActiveTag }}>
+        <ContactContext.Provider value={{ contacts, dispatch, tagsList, activeTag, setActiveTag, showTrash, setShowTrash }}>
             {props.children}
         </ContactContext.Provider>
     )
