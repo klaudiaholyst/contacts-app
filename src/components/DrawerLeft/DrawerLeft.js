@@ -14,7 +14,7 @@ import Collapse from '@material-ui/core/Collapse';
 
 import PersonIcon from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import LocalOfferIconOutlined from '@material-ui/icons/LocalOfferOutlined';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -24,9 +24,6 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -81,6 +78,13 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+  listItem: {
+    paddingTop: '12px',
+    paddingBottom:'12px'
+  }
 }));
 
 export default function DrawerLeft(props) {
@@ -104,44 +108,45 @@ export default function DrawerLeft(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <List>
-          <ListItem button key={'Contacts'}>
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary={'Show all contacts'} />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button onClick={handleClick}>
-            <ListItemIcon>{openDrawer ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
-            <ListItemText primary="Tags" />
-          </ListItem>
-          <Collapse in={openDrawer} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-             <ContactContext.Consumer>
-                {({ tagsList, setActiveTag, activeTag }) => (
-                  tagsList.map(tag => (
-                    <ListItem key={tag} button onClick={()=> {setActiveTag(tag)}} selected={activeTag===tag}>
-                      <ListItemIcon>
-                        <LocalOfferIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={tag} />
-                    </ListItem>
-                  ))
-                )
-                }
-            </ContactContext.Consumer>              
-            </List>
-          </Collapse>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button key={'Trash'}>
-            <ListItemIcon><DeleteIcon /></ListItemIcon>
-            <ListItemText primary={'Trash'} />
-          </ListItem>
-        </List>
-   
+        <ContactContext.Consumer>
+          {({ tagsList, setActiveTag, activeTag }) => (
+            <>
+              <List disablePadding>
+                <ListItem button key={'Contacts'} selected={activeTag === ''} onClick={() => { setActiveTag('') }} className={classes.listItem}>
+                  <ListItemIcon><PersonIcon /></ListItemIcon>
+                  <ListItemText primary={'Show all contacts'} />
+                </ListItem>
+              </List>
+              <Divider />
+              <List disablePadding>
+                <ListItem button onClick={handleClick}>
+                  <ListItemIcon>{openDrawer ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
+                  <ListItemText primary="Tags" />
+                </ListItem>
+                <Collapse in={openDrawer} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+
+                    {tagsList.map(tag => (
+                      <ListItem key={tag} button onClick={() => { setActiveTag(tag) }} selected={activeTag === tag} className={classes.nested}>
+                        <ListItemIcon>
+                          <LocalOfferIconOutlined fontSize="small"/>
+                        </ListItemIcon>
+                        <ListItemText primary={tag} />
+                      </ListItem>
+                    ))}
+
+                  </List>
+                </Collapse>
+              </List>
+              <Divider />
+              <List disablePadding>
+                <ListItem button key={'Trash'}>
+                  <ListItemIcon><DeleteIcon /></ListItemIcon>
+                  <ListItemText primary={'Trash'} />
+                </ListItem>
+              </List>
+            </>)}
+        </ContactContext.Consumer>
       </Drawer>
     </div>
   );
