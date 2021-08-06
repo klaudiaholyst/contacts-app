@@ -11,6 +11,17 @@ export const contactReducer = (state, action) => {
             }]
         case 'IMPORT_CONTACTS':
             return action.payload;
+        case 'PUT_TO_TRASH' :
+            return (state.map(contact => {
+                if (contact.id === action.payload)
+                return Object.assign({}, contact, {inTrash:true})
+                return contact
+            }));
+        case 'PUT_OUTSIDE_TRASH' :
+            return (state.map(contact => {
+                if (contact.id === action.payload)
+                return Object.assign({}, contact, {inTrash:false})
+                return contact}));
         default:
             return state
     }

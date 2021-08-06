@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { ContactContext } from '../../contexts/ContactContext';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,7 +14,7 @@ import Collapse from '@material-ui/core/Collapse';
 
 import PersonIcon from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import LocalOfferIconOutlined from '@material-ui/icons/LocalOfferOutlined';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -22,9 +24,6 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -79,16 +78,24 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+  listItem: {
+    paddingTop: '12px',
+    paddingBottom:'12px'
+  }
 }));
 
 export default function DrawerLeft(props) {
 
   const classes = useStyles();
-  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = useState(true);
 
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -101,36 +108,49 @@ export default function DrawerLeft(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <List>
-          <ListItem button key={'Contacts'}>
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary={'Contacts'} />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button onClick={handleClick}>
-            <ListItemIcon>{openDrawer ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
-            <ListItemText primary="Tags" />
-          </ListItem>
-          <Collapse in={openDrawer} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button >
-                <ListItemIcon>
-                  <LocalOfferIcon />
-                </ListItemIcon>
-                <ListItemText primary="Clients" />
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button key={'Trash'}>
-            <ListItemIcon><DeleteIcon /></ListItemIcon>
-            <ListItemText primary={'Trash'} />
-          </ListItem>
-        </List>
+        <ContactContext.Consumer>
+          {({ tagsList, setActiveTag, activeTag, setShowTrash, showTrash }) => (
+            <>
+              <List disablePadding>
+                <ListItem button key={'Contacts'} selected={activeTag === ''&& !showTrash} onClick={() => { setActiveTag(''); setShowTrash(false) }} className={classes.listItem}>
+                  <ListItemIcon><PersonIcon /></ListItemIcon>
+                  <ListItemText primary={'Show all contacts'} />
+                </ListItem>
+              </List>
+              <Divider />
+              <List disablePadding>
+                <ListItem button onClick={handleClick}>
+                  <ListItemIcon>{openDrawer ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
+                  <ListItemText primary="Tags" />
+                </ListItem>
+                <Collapse in={openDrawer} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+
+                    {tagsList.map(tag => (
+                      <ListItem key={tag} button onClick={() => { setActiveTag(tag); setShowTrash(false); }} selected={activeTag === tag} className={classes.nested}>
+                        <ListItemIcon>
+                          <LocalOfferIconOutlined fontSize="small"/>
+                        </ListItemIcon>
+                        <ListItemText primary={tag} />
+                      </ListItem>
+                    ))}
+
+                  </List>
+                </Collapse>
+              </List>
+              <Divider />
+              <List disablePadding>
+                <ListItem button key={'Trash'} 
+                onClick={() => {
+                  setShowTrash(true);
+                  setActiveTag('')}} 
+                  selected={showTrash}>
+                  <ListItemIcon><DeleteIcon /></ListItemIcon>
+                  <ListItemText primary={'Trash'} />
+                </ListItem>
+              </List>
+            </>)}
+        </ContactContext.Consumer>
       </Drawer>
     </div>
   );
