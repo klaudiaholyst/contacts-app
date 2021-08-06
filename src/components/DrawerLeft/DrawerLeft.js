@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { ContactContext } from '../../contexts/ContactContext';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -84,11 +86,12 @@ const useStyles = makeStyles((theme) => ({
 export default function DrawerLeft(props) {
 
   const classes = useStyles();
-  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = useState(true);
 
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -104,7 +107,7 @@ export default function DrawerLeft(props) {
         <List>
           <ListItem button key={'Contacts'}>
             <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary={'Contacts'} />
+            <ListItemText primary={'Show all contacts'} />
           </ListItem>
         </List>
         <Divider />
@@ -115,12 +118,19 @@ export default function DrawerLeft(props) {
           </ListItem>
           <Collapse in={openDrawer} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button >
-                <ListItemIcon>
-                  <LocalOfferIcon />
-                </ListItemIcon>
-                <ListItemText primary="Clients" />
-              </ListItem>
+             <ContactContext.Consumer>
+                {({ tagsList, setActiveTag, activeTag }) => (
+                  tagsList.map(tag => (
+                    <ListItem key={tag} button onClick={()=> {setActiveTag(tag)}} selected={activeTag===tag}>
+                      <ListItemIcon>
+                        <LocalOfferIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={tag} />
+                    </ListItem>
+                  ))
+                )
+                }
+            </ContactContext.Consumer>              
             </List>
           </Collapse>
         </List>
@@ -131,6 +141,7 @@ export default function DrawerLeft(props) {
             <ListItemText primary={'Trash'} />
           </ListItem>
         </List>
+   
       </Drawer>
     </div>
   );

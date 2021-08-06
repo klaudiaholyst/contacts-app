@@ -28,7 +28,7 @@ export default function ContactsTable() {
   const classes = useStyles();
   return (
     <ContactContext.Consumer>
-      {({ contacts }) => (
+      {({ contacts, activeTag }) => (
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table" variant="body">
             <TableHead>
@@ -40,7 +40,7 @@ export default function ContactsTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {contacts && contacts.map((contact) => (
+              {contacts && contacts.filter(item => item.tags.includes(activeTag)).map((contact) => (
                 <TableRow key={contact.id}>
                   <TableCell scope="row">
                     {contact.name} {contact.surname}
