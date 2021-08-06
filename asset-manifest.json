@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/contacts-app/static/css/main.dec661c7.chunk.css",
-    "main.js": "/contacts-app/static/js/main.f6fe645f.chunk.js",
-    "main.js.map": "/contacts-app/static/js/main.f6fe645f.chunk.js.map",
-    "runtime-main.js": "/contacts-app/static/js/runtime-main.a552286f.js",
-    "runtime-main.js.map": "/contacts-app/static/js/runtime-main.a552286f.js.map",
-    "static/js/2.e4487b79.chunk.js": "/contacts-app/static/js/2.e4487b79.chunk.js",
-    "static/js/2.e4487b79.chunk.js.map": "/contacts-app/static/js/2.e4487b79.chunk.js.map",
-    "static/js/3.639faaaa.chunk.js": "/contacts-app/static/js/3.639faaaa.chunk.js",
-    "static/js/3.639faaaa.chunk.js.map": "/contacts-app/static/js/3.639faaaa.chunk.js.map",
+    "main.js": "/contacts-app/static/js/main.5ff5cb3e.chunk.js",
+    "main.js.map": "/contacts-app/static/js/main.5ff5cb3e.chunk.js.map",
+    "runtime-main.js": "/contacts-app/static/js/runtime-main.09a97736.js",
+    "runtime-main.js.map": "/contacts-app/static/js/runtime-main.09a97736.js.map",
+    "static/js/2.46cd212a.chunk.js": "/contacts-app/static/js/2.46cd212a.chunk.js",
+    "static/js/2.46cd212a.chunk.js.map": "/contacts-app/static/js/2.46cd212a.chunk.js.map",
+    "static/js/3.8a5192ed.chunk.js": "/contacts-app/static/js/3.8a5192ed.chunk.js",
+    "static/js/3.8a5192ed.chunk.js.map": "/contacts-app/static/js/3.8a5192ed.chunk.js.map",
     "index.html": "/contacts-app/index.html",
     "static/css/main.dec661c7.chunk.css.map": "/contacts-app/static/css/main.dec661c7.chunk.css.map",
-    "static/js/2.e4487b79.chunk.js.LICENSE.txt": "/contacts-app/static/js/2.e4487b79.chunk.js.LICENSE.txt"
+    "static/js/2.46cd212a.chunk.js.LICENSE.txt": "/contacts-app/static/js/2.46cd212a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a552286f.js",
-    "static/js/2.e4487b79.chunk.js",
+    "static/js/runtime-main.09a97736.js",
+    "static/js/2.46cd212a.chunk.js",
     "static/css/main.dec661c7.chunk.css",
-    "static/js/main.f6fe645f.chunk.js"
+    "static/js/main.5ff5cb3e.chunk.js"
   ]
 }
